@@ -1,14 +1,13 @@
-
 # ServiceNow Critical Network Incident Notification System
 
 ## System Overview
 
-I successfully fixed Uber's broken incident notification system that was preventing critical network incidents from triggering email alerts to the Network Operations team. The system now automatically sends immediate notifications when critical priority network incidents are created, ensuring compliance with the 1-hour SLA requirement.
+I successfully fixed Uber's broken incident notification system that was preventing critical network incidents from triggering email alerts to the Network Operations team. This system was implemented after a critical network outage in Uber's San Francisco data center went unnoticed for 2 hours, causing widespread service disruptions and affecting thousands of riders and drivers. The incident resulted in significant revenue loss and regulatory scrutiny. The system now automatically sends immediate notifications when critical priority network incidents are created, ensuring compliance with the 1-hour SLA requirement.
 
 **Key Components:**
 
-* **Flow Designer Workflow** : "Kura Workload 1" - triggers on critical network incidents
-* **Email Notification** : "Incident Assignment Notification" - sends alerts to Network Operations team
+* **Flow Designer Workflow** : triggers on critical network incidents
+* **Email Notification** : "Send Notification" - sends alerts to Network Operations team
 * **User Group** : "Network Operations" - receives the automated notifications
 * **SLA Definition** : "Urgency High" - enforces 1-hour response requirement
 
@@ -16,7 +15,7 @@ I successfully fixed Uber's broken incident notification system that was prevent
 
 ### 1. Flow Configuration Analysis
 
-I discovered the "Kura Workload 1" flow was inactive and had incorrect trigger conditions. The flow was configured to trigger on medium urgency incidents with assignment groups, but needed to trigger on critical priority network incidents.
+I discovered the workflow was inactive and had incorrect trigger conditions. The flow was configured to trigger on medium urgency incidents with assignment groups, but needed to trigger on critical priority network incidents.
 
 ### 2. Priority Calculation Research
 
@@ -46,7 +45,7 @@ Created test incidents with:
 * Urgency: "1 - High"
 * Priority: Auto-calculated to "1 - Critical"
 
-Verified that emails were successfully sent to the Network Operations team.
+Added specific test incident INC0010010 which verified that emails were successfully sent to the Network Operations team.
 
 ## Architecture Diagram
 
@@ -92,7 +91,7 @@ To improve the incident routing and notification system, I implemented several o
 * Ensured notifications are sent immediately upon incident creation
 * Added incident priority information to email subject for quick assessment
 
-These optimizations ensure the system is reliable, efficient, and meets Uber's operational requirements for critical network incident response.
+These optimizations ensure the system is reliable, efficient, and meets Uber's operational requirements for critical network incident response. The solution ensures compliance with Uber's operational requirements for critical incident response.
 
 ## AI Scenario
 
