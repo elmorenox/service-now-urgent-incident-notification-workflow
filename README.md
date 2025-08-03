@@ -4,18 +4,11 @@
 
 I successfully fixed Uber's broken incident notification system that was preventing critical network incidents from triggering email alerts to the Network Operations team. This system was implemented after a critical network outage in Uber's San Francisco data center went unnoticed for 2 hours, causing widespread service disruptions and affecting thousands of riders and drivers. The incident resulted in significant revenue loss and regulatory scrutiny. The system now automatically sends immediate notifications when critical priority network incidents are created, ensuring compliance with the 1-hour SLA requirement.
 
-**Key Components:**
-
-* **Flow Designer Workflow** : "Kura Workload 1" - triggers on critical network incidents
-* **Email Notification** : "Send Notification" - sends alerts to Network Operations team
-* **User Group** : "Network Operations" - receives the automated notifications
-* **SLA Definition** : "Urgency High" - enforces 1-hour response requirement
-
 ## Implementation Steps
 
 ### 1. Flow Configuration Analysis
 
-I discovered the "Kura Workload 1" flow was inactive and had incorrect trigger conditions. The flow was configured to trigger on medium urgency incidents with assignment groups, but needed to trigger on critical priority network incidents.
+I discovered the flow was inactive and had incorrect trigger conditions. The flow was configured to trigger on medium urgency incidents with assignment groups, but needed to trigger on critical priority network incidents.
 
 ### 2. Priority Calculation Research
 
@@ -23,7 +16,7 @@ Using ServiceNow's Priority Lookup Rules documentation, I confirmed that Critica
 
 ### 3. Flow Activation and Configuration
 
-* Activated the "Kura Workload 1" flow from draft status
+* Activated the flow from draft status
 * Updated trigger conditions to: `category=network AND priority=1`
 * Verified the "Send Notification" action was properly configured
 * Published the flow to make it active
